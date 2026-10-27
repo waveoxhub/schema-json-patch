@@ -356,7 +356,7 @@ const findArrayIndexWithCache = (
 
     // 无主键，尝试直接使用索引
     const index = parseInt(key, 10);
-    return isNaN(index) ? -1 : Math.min(Math.max(0, index), array.length - 1);
+    return Number.isNaN(index) || index < 0 || index >= array.length ? -1 : index;
 };
 
 /**
@@ -505,7 +505,7 @@ const findArrayIndex = (array: unknown[], key: string, schema: ArraySchema): num
     }
 
     const index = parseInt(key, 10);
-    return isNaN(index) ? -1 : Math.min(Math.max(0, index), array.length - 1);
+    return Number.isNaN(index) || index < 0 || index >= array.length ? -1 : index;
 };
 
 /**
